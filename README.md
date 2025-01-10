@@ -36,8 +36,9 @@ This program imports a csv file with a column of ISBNs and exports a new csv fil
 ### Requirements
 In order to run this program you will need the following:
 - A reliable Internet connection
-- [An OCLC Library Membership](https://www.oclc.org/en/membership/member-resources.html)
-- [An OCLC Library Code](https://www.oclc.org/en/contacts/libraries.html)
+
+- If enabling OCLC WorldCat search you'll need [an OCLC Library Membership](https://www.oclc.org/en/membership/member-resources.html)
+- If enabling OCLC WorldCat search you'll need [an OCLC Library Code](https://www.oclc.org/en/contacts/libraries.html)
 - If enabling OCLC WorldCat search you'll need to [Request a Worldat Search API Key (This program uses Version 2 of the search api)](https://www.oclc.org/developer/api/oclc-apis/worldcat-search-api.en.html)
 
 If you start the program as a Python script rather than installing it with the Windows Installer Provided in this repo you'll need to manually install software dependencies.  Starting the program in the terminal using Python will work on Linux, Mac, and Windows (see the section [Run as a Script](#run-as-a-script)).  The following software must be installed on your computer in order to start this program from the terminal:
