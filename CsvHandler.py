@@ -13,7 +13,7 @@ class CsvHandler:
                 self.csv_reader = csv.DictReader(self.import_csv)
                 if self.check_isbn_header() == True:
                     for line in self.csv_reader:
-                        self.list_of_isbns.append(line['isbn'])
+                        self.list_of_isbns.append(line[self.formatted_isbn_key])
                     return "ISBN Found"
                 else:
                     return "Check the import csv file and ensure there is a column labeled ISBN"
@@ -27,6 +27,10 @@ class CsvHandler:
         uppercase_column_names = [x.upper() for x in column_names]
         required_column_name = 'ISBN'
         if required_column_name in uppercase_column_names:
+            for key in column_names:
+                isbn_key = str(key)
+                if isbn_key.casefold() == required_column_name.casefold():
+                    self.formatted_isbn_key = isbn_key
             return True
         else:
             return False
