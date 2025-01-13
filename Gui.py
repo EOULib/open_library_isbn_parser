@@ -246,7 +246,7 @@ class Gui:
 
 		self.publisher_checkbutton_checked = tk.BooleanVar()
 		self.publisher_checkbutton_checked.set(self.database.get_table_field_value('publisher', 'data_saved_values'))
-		publisher_checkbutton = ttk.Checkbutton(data_frame, text="Pulisher", style="cb.TCheckbutton", variable=self.publisher_checkbutton_checked)
+		publisher_checkbutton = ttk.Checkbutton(data_frame, text="Publisher", style="cb.TCheckbutton", variable=self.publisher_checkbutton_checked)
 		publisher_checkbutton.grid (row=2, column=3, sticky='we')
 
 		self.year_checkbutton_checked = tk.BooleanVar()
