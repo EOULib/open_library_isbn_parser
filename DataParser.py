@@ -79,8 +79,11 @@ class DataParser:
             else:
                 author_data_bytes = self.ol_author_api_request(ol_authors_string)
                 if author_data_bytes != False:
-                    author_data_dict = dp_json_parser.data_to_python_dict(author_data_bytes)
-                    name = author_data_dict['name']
+                    try:
+                        author_data_dict = dp_json_parser.data_to_python_dict(author_data_bytes)
+                        name = author_data_dict['name']
+                    except:
+                        name = 'Author not found in Open Library'
             self.data_row_dict['Author'] = name
         elif self.api_data_dict.get('by_statement') != None:
             self.data_row_dict['Author'] = self.api_data_dict.get('by_statement')
@@ -88,9 +91,14 @@ class DataParser:
             ol_contributions_string = str(self.api_data_dict.get('contributions'))
             ol_contributions_string = ol_contributions_string.replace("['", "").replace("']", "").replace("'", "")
             self.data_row_dict['Author'] = ol_contributions_string
+        else:
+            self.data_row_dict['Author'] = "Author not found in Open Library"
 
-        if self.data_row_dict['Author'] == None and self.include_google:
-            self.data_row_dict['Author'] = self.volume_info_dict['authors']
+        if self.data_row_dict['Author'] == "Author not found in Open Library" and self.include_google:
+            try:
+                self.data_row_dict['Author'] = self.volume_info_dict['authors']
+            except:
+                self.data_row_dict['Author'] = "Author not found in Open Library or Google Books"
 
     def set_publish_year(self):
         self.data_row_dict['Year Published'] = self.api_data_dict.get('publish_date')
@@ -197,8 +205,11 @@ class DataParser:
             holdings_json_parser = JsonParser()
             holdings_data_dict = holdings_json_parser.data_to_python_dict(holdings_response_bytes)
             holdings_key_list = list(holdings_data_dict.keys())
-            inst_holdings_dict = holdings_data_dict['briefRecords'][0]['institutionHolding']
-            self.data_row_dict['Number of Copies Owned'] = inst_holdings_dict['totalHoldingCount']
+            try:
+                inst_holdings_dict = holdings_data_dict['briefRecords'][0]['institutionHolding']
+                self.data_row_dict['Number of Copies Owned'] = inst_holdings_dict['totalHoldingCount']
+            except:
+                self.data_row_dict['Number of Copies Owned'] = "OCLC Data not Found"
         else:
             self.data_row_dict['Number of Copies Owned'] = 'OCLC Data not Found'
 
