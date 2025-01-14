@@ -3,7 +3,7 @@ from JsonParser import JsonParser
 from tkinter import messagebox
 
 class DataParser:
-
+#
     def __init__(self):
         self.data_row_dict = {}
         self.api_data_dict = {}
