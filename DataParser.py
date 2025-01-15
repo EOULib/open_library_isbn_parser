@@ -3,7 +3,7 @@ from JsonParser import JsonParser
 from tkinter import messagebox
 
 class DataParser:
-#
+
     def __init__(self):
         self.data_row_dict = {}
         self.api_data_dict = {}
@@ -84,7 +84,10 @@ class DataParser:
                         name = author_data_dict['name']
                     except:
                         name = 'Author not found in Open Library'
-            self.data_row_dict['Author'] = name
+            if name != None:
+                self.data_row_dict['Author'] = name
+            else:
+                self.data_row_dict['Author'] = "Author API Call Failed For An Unknown Reason"
         elif self.api_data_dict.get('by_statement') != None:
             self.data_row_dict['Author'] = self.api_data_dict.get('by_statement')
         elif self.api_data_dict.get('contributions') != None:
