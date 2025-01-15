@@ -144,3 +144,4 @@ class Controller:
         self.gui.change_run_button_state('normal')
         self.csv_handler.close_output_file()
         isbn_list.clear()
+        row_dict.clear()
