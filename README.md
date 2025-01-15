@@ -3,6 +3,7 @@
 **Table of Contents:**
 
 1. [Overview](#overview)
+	- [Version Info](#version-info)
     - [Video Walkthrough](#video-walkthrough)
 	- [Description](#description)
 	- [Requirements](#requirements)
@@ -10,9 +11,15 @@
 1. [Installation](#installation)
 	 - [Windows Installer](#windows-installer)
 	 - [Run as a Script](#run-as-a-script)
+1.  [Troubleshooting](#troubleshooting)
 1. [License](#licence)
 
 ## **Overview**
+
+### Version Info
+Current Version: 1.0.5 -- Fixed bug in v1.0.0 that caused errors in author processing when data is returned in an unexpected format.  Fixed bug that broke the program when input csv column header is different from isbn (ie: ISBN, IsBn, etc, wouldn't work). Fix indexing bug when OCLC returns data in a layout the program wasn't expecting.  Fixed bug that would cause the wrong data to be populated under the wrong column names in the export CSV when saved Data Configs are run once, then new data are selected before running the program again.  Fixed minor typos and updated README with version number.  
+Older Versions: 
+	- 1.0.0 -- Initial Commit
 
 ### Video Walkthrough
 Video demonstration coming soon
@@ -86,6 +93,13 @@ There are a number of ways to grab the installer, the easiest being to click on 
 ### Run as a Script
 You can start this program in Linux, Windows, and Mac as a Python script using a command line terminal.  If this is the route you take you must be sure to install all software dependencies yourself (see the section for [Requirements](#requirements) above). The first time you run this program as a script it's going to produce a hidden .db file that stores the program's database information in the root directory of the repository where the .py files are stored.  To run as a script start by opening a terminal (bash for Linux and Mac, PowerShell for Windows) and go to the directory where the Main.py file is stored in the repository. Both bash and PowerShell terminals can change directories by running this command: ```cd /path/to/WorldCatApiParser.py```.  Once in the proper directory run this command if you're using Windows: ```python.exe Main.py``` and run this command if using Linux or Mac: ```python3 WorldCatApiParser.py```.  This should cause the user interface to appear.
 
+### Troublshooting
+	- **Bug Reporting**: Bugs can be submitted to Jeremiah Kellogg via email: jkellogg@eou.edu.  Please include a step-by-step narative for how the bug was discovered as well as the ISBN import file you were using when encountering the problem. 
+	- **Program Appears to Freeze**: 
+			1. Open Library servers can get bogged down from time to time, which significantly increases time between the parsing of ISBNs.  If the program is hung up for more than a minute, it's very likely the program has froze and the cause is a bug that hasn't been discovered, yet.  Best approach to remedy would be to report the bug.  When doing so please make sure to include the input file with ISBNs so the issue can be replicated, pinpointed, and fixed.  
+			1. If the program runs for a bit and then seems to suddenly stop working without any error messages it's likely an unknown bug was encountered. If the program is hung up for more than a minute, it's not likely to start up again.  The best approach to remedy would be to report the bug and include your ISBN import file when doing so.
+	- **Program returns wrong data under some or all columns**
+			1.  This has been encountered before, but was fixed in version 1.0.5.  If you're running a version below 1.0.5, then you should upgrade to the newest version.  If you're using version 1.0.5 or above, it's a bug that hasn't been discovered yet and should be reported.  Please include import csv file for replicating the issue.  Closing the program and opening it again may clear the bug, but should still be reported.
 
 ## **License**
 MIT No Attribution License
