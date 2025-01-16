@@ -23,7 +23,7 @@ class Controller:
         
     def start_program_loop(self):
         while self.program_running:
-            time.sleep(0.25)
+            time.sleep(0.5)
             if self.check_run_button_press():
                 self.run_parser()
             self.gui.set_run_btn_pushed_false()

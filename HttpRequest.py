@@ -2,6 +2,7 @@ import urllib3
 
 from http.client import responses
 import base64
+import time
 
 class HttpRequest:
     def __init__(self):
@@ -39,6 +40,22 @@ class HttpRequest:
         http_status = get_author_info.status
         if http_status == 200:
             return get_author_info.data
+        elif http_status == 429:
+            loop_state = True
+            iterator = 0
+            while loop_state == True:
+                time.sleep(7)
+                get_author_info = self.http.request(
+                    "GET",
+                    ol_author_api_url,
+                    headers = self.api_headers
+                )
+                http_status = get_author_info.status
+                if http_status == 200:
+                    loop_state = False
+                    return http_status
+                elif iterator = 10:
+                    return False
         else:
             return False
 
